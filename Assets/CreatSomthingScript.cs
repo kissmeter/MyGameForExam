@@ -21,6 +21,9 @@ public class CreatSomthingScript : MonoBehaviour {
     public void StartToZhuce() {
 
     }
+    public void GetCode() {
+
+    }
     public void GoBack() {
         ThisPlane.SetActive(true);
         AnothorPlane .SetActive(false);
