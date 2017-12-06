@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="gb2312"?>
+<DemoClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <_id>100</_id>
+  <_myName>RCD</_myName>
+</DemoClass><?xml version="1.0" encoding="gb2312"?>
+<DemoClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <_id>101</_id>
+  <_myName>RCD</_myName>
+</DemoClass>
