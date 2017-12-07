@@ -47,7 +47,7 @@ public class MapDlock {
         //-------------------------------
         this.thisGame = thisGame;
 
-        AddAMapDlockAClock(-1, 1);
+        AddAMapDlockAClock(0, 0);
     
 
         this.mFolderName = mFolderName;

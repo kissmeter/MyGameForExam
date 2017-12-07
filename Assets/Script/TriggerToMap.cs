@@ -11,7 +11,7 @@ public class TriggerToMap : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        PlayerPositionInMapClock = PlayerPositionInMapClock + new Vector3((int)this.transform.position.x, (int)this.transform.position.y, (int)this.transform.position.z) - PlayerPosition;
+        PlayerPositionInMapClock = new Vector3(0, 0, 0);
         PlayerPosition = new Vector3((int)this.transform.position.x, (int)this.transform.position.y, (int)this.transform.position.z);
     }
 	
