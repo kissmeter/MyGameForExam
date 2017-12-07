@@ -43,6 +43,11 @@ public class MapClock
 
 
     }
+    public void CreatAEvirenment(int mapBigger,int bigmapnumberx,int bigmapnumbery,int SmallMapX,int SmallMapY,string Name,GameObject ToCreat) {
+        ThisBlock[SmallMapX, SmallMapY] = new MapBlock(Mapbigger, bigmapnumberx, bigmapnumbery, SmallMapX, SmallMapY, 0, "StartCube", "StartPicture", ToCreat);
+
+
+    }
     public MapBlock[,] ThisBlock;
     public int BigMapListNumberX
     {

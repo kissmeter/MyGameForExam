@@ -11,11 +11,11 @@ public class TriggerToMap : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-<<<<<<< HEAD:Assets/Script/TriggerToMap.cs
-        PlayerPositionInMapClock = new Vector3(0, 0, 0);
-=======
+
+      //  PlayerPositionInMapClock = new Vector3(0, 0, 0);
+
         PlayerPositionInMapClock = new Vector3(50, 0, 50);
->>>>>>> 43cab55d71a13c9beb2e07f150fa6d91c16429fa:Assets/ScriptInSceneGameForEditor/TriggerToMap.cs
+
         PlayerPosition = new Vector3((int)this.transform.position.x, (int)this.transform.position.y, (int)this.transform.position.z);
     }
 

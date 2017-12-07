@@ -7,11 +7,12 @@ using LitJson;
 using System;
 
 public class MapDlock {
+    
     public GameObject thisGame;
     public static int MapClockBigger=100;
     public List<Vector2> MapClockList = new List<Vector2>();
-    private string mFolderName = "F:/MyGameSave/Map";
-    private string mFileName = "MapSave";
+    private string mFolderName;
+    private string mFileName;
     //生成的时候想办法吧，辣鸡！ 
     public int WhatClockMap;
     //public Dictionary<string, MapClock> Dic_Value;
@@ -438,7 +439,9 @@ public class MapDlock {
         return null;
     }
     //生成一小块mapblock
-
+    public void CreateWhenPlayerHitButton(int BigX,int BigZ,int SmallX,int SmallZ,GameObject WillCreate) {
+        AllMapDlock[BigX / MapClockBigger][BigZ / MapClockBigger].CreatAEvirenment(MapClockBigger, BigX, BigZ, SmallX, SmallZ, "StartCube", WillCreate);
+    }
     public void ControlAPrefabNameOfBlock(Vector2 BigMapVector2, Vector3 SmallMapVector3, string NewName, string NewPrefabName) {
         Debug.Log("接收到了要生成的信息BigMapVector2=" + BigMapVector2+ "SmallMapVector3" + SmallMapVector3+ ""+NewPrefabName);
         try
@@ -457,11 +460,13 @@ public class MapBlock
   {
     Renderer ThisRender;
     //Gameobject每次取一下适合名字的prefab 
-    GameObject kk;
-   public MapBlock(int MapBigger,int BigMapListNumberX,int BigMapListNumberY,int SmallMapListNumberX, int SmallMapListNumberY, int SmallMapListNumberZ,string PrefabName,string PictureName)
+    GameObject kk=GameObject.Find("EventSystem");
+    GameObject BehindHim;
+   public MapBlock(int MapBigger,int BigMapListNumberX,int BigMapListNumberY,int SmallMapListNumberX, int SmallMapListNumberY, int SmallMapListNumberZ,string PrefabName,string PictureName,GameObject Create)
     {
-       
-     //  Renderer ThisRender=GameObject.Instantiate(kk,new Vector3(MapBigger * BigMapListNumberX- BigMapListNumberX /2+ SmallMapListNumberX, MapBigger * BigMapListNumberY - BigMapListNumberY / 2 + SmallMapListNumberY, SmallMapListNumberZ),kk.transform.rotation).GetComponent<Renderer>();
+
+        //  Renderer ThisRender=GameObject.Instantiate(kk,new Vector3(MapBigger * BigMapListNumberX- BigMapListNumberX /2+ SmallMapListNumberX, MapBigger * BigMapListNumberY - BigMapListNumberY / 2 + SmallMapListNumberY, SmallMapListNumberZ),kk.transform.rotation).GetComponent<Renderer>();
+       BehindHim=MonoBehaviour.Instantiate(Create,new Vector3(BigMapListNumberX,0, BigMapListNumberY),kk.transform.rotation)as GameObject;
        this.BX = BigMapListNumberX;
        this.BY = BigMapListNumberY;
        this.SX = SmallMapListNumberX;
@@ -469,6 +474,18 @@ public class MapBlock
        this.PCN = PrefabName;
        this.PFN = PictureName;
        HaveBeenUse = true;
+    }
+    public MapBlock(int MapBigger, int BigMapListNumberX, int BigMapListNumberY, int SmallMapListNumberX, int SmallMapListNumberY, int SmallMapListNumberZ, string PrefabName, string PictureName)
+    {
+
+        //  Renderer ThisRender=GameObject.Instantiate(kk,new Vector3(MapBigger * BigMapListNumberX- BigMapListNumberX /2+ SmallMapListNumberX, MapBigger * BigMapListNumberY - BigMapListNumberY / 2 + SmallMapListNumberY, SmallMapListNumberZ),kk.transform.rotation).GetComponent<Renderer>();
+        this.BX = BigMapListNumberX;
+        this.BY = BigMapListNumberY;
+        this.SX = SmallMapListNumberX;
+        this.SZ = SmallMapListNumberZ;
+        this.PCN = PrefabName;
+        this.PFN = PictureName;
+        HaveBeenUse = true;
     }
     //public GameObject jj {
 
