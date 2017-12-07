@@ -209,6 +209,17 @@ public class MapDlock {
     //public string GetPath() {
     //    return FolderName;
     //}
+    private int DonotDelTheAfterPoint(int X,int Y) {
+        if (X > 0) {
+            return (int)(X + Y / 2) / Y;
+        } else if (X == 0) {
+            return 0;
+        }
+        else {
+            return (int)(X - Y / 2) / Y;
+        }
+
+    }
     public void CreateNewSmallMapIsClock(int i,int j)
     {
         bool getsomething = false;
@@ -235,8 +246,8 @@ public class MapDlock {
 
     }
     public void Flash(int PositionX,int PositionY) {
-        int AimX = (int)(PositionX / MapClockBigger);
-        int AimY = (int)(PositionY / MapClockBigger);
+        int AimX = DonotDelTheAfterPoint(PositionX, MapClockBigger);
+        int AimY = DonotDelTheAfterPoint(PositionY, MapClockBigger);
         CreateNewSmallMapIsClock(AimX, AimY);
    
     }
@@ -427,7 +438,9 @@ public class MapDlock {
         return null;
     }
     //生成一小块mapblock
+
     public void ControlAPrefabNameOfBlock(Vector2 BigMapVector2, Vector3 SmallMapVector3, string NewName, string NewPrefabName) {
+        Debug.Log("接收到了要生成的信息BigMapVector2=" + BigMapVector2+ "SmallMapVector3" + SmallMapVector3+ ""+NewPrefabName);
         try
         {
             FindOutBlock(BigMapVector2, SmallMapVector3).GetNewPrefabAndPicture(NewName, NewPrefabName);

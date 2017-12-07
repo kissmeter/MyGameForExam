@@ -11,11 +11,18 @@ public class TriggerToMap : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+<<<<<<< HEAD:Assets/Script/TriggerToMap.cs
         PlayerPositionInMapClock = new Vector3(0, 0, 0);
+=======
+        PlayerPositionInMapClock = new Vector3(50, 0, 50);
+>>>>>>> 43cab55d71a13c9beb2e07f150fa6d91c16429fa:Assets/ScriptInSceneGameForEditor/TriggerToMap.cs
         PlayerPosition = new Vector3((int)this.transform.position.x, (int)this.transform.position.y, (int)this.transform.position.z);
     }
-	
-	// Update is called once per frame
+
+    // Update is called once per frame
+    public Vector3 positions() {
+        return new Vector3(0,0,0);
+    }
 	void Update () {
         PlayerPositionInMapClock = PlayerPositionInMapClock + new Vector3((int)this.transform.position.x, (int)this.transform.position.y, (int)this.transform.position.z) - PlayerPosition;
         PlayerPosition = new Vector3((int)this.transform.position.x, (int)this.transform.position.y, (int)this.transform.position.z);
@@ -51,7 +58,7 @@ public class TriggerToMap : MonoBehaviour {
         int x = (int)this.PlayerPosition.x;
         int z = (int)this.PlayerPosition.z;
         
-        if (this.PlayerPositionInMapClock.x <= -0.201* mapbig) {
+        if (this.PlayerPositionInMapClock.x <= 0.25* mapbig) {
             Debug.Log("x-1");
             UseMapDlock.ThisUser.Flash(x - mapbig, z);
             UseMapDlock.ThisUser.Flash(x - mapbig, z - mapbig);
@@ -59,19 +66,19 @@ public class TriggerToMap : MonoBehaviour {
 
         }
       
-        if (this.PlayerPositionInMapClock.x >=  0.201 * mapbig) {
+        if (this.PlayerPositionInMapClock.x >= 0.75 * mapbig) {
             Debug.Log("x+1");
             UseMapDlock.ThisUser.Flash(x + mapbig, z);
             UseMapDlock.ThisUser.Flash(x + mapbig, z - mapbig);
             UseMapDlock.ThisUser.Flash(x + mapbig, z + mapbig);
         }
-        if (this.PlayerPositionInMapClock.z <= -0.201 * mapbig) {
+        if (this.PlayerPositionInMapClock.z <= 0.25 * mapbig) {
             Debug.Log("z-1");
             UseMapDlock.ThisUser.Flash(x , z - mapbig);
             UseMapDlock.ThisUser.Flash(x - mapbig, z - mapbig);
             UseMapDlock.ThisUser.Flash(x + mapbig, z - mapbig);
         }
-        if (this.PlayerPositionInMapClock.z >= 0.201 * mapbig) {
+        if (this.PlayerPositionInMapClock.z >= 0.75 * mapbig) {
             Debug.Log("z+1");
             UseMapDlock.ThisUser.Flash(x , z + mapbig);
             UseMapDlock.ThisUser.Flash(x - mapbig, z + mapbig);
