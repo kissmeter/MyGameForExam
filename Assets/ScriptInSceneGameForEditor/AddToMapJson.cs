@@ -229,7 +229,7 @@ public class MapDlock {
             if (MapClockList[k].x == i && MapClockList[k].y == j)
             {
                 getsomething = true;
-                Debug.Log("getsomething" + "MapClockList[k].x"+ MapClockList[k].x+"i=" + i + "MapClockList[k].x" + MapClockList[k].y+"j=" + j);
+             //   Debug.Log("getsomething" + "MapClockList[k].x"+ MapClockList[k].x+"i=" + i + "MapClockList[k].x" + MapClockList[k].y+"j=" + j);
             }
             else {
              
@@ -242,6 +242,8 @@ public class MapDlock {
         else {
             MapClockList.Add(new Vector2(i, j));
             AddAMapDlockAClock(i, j);
+            Debug.Log( AllMapDlock[i][j]);
+            Debug.Log("HaveADDClock" + i + "j" + j);
         }
        
 
@@ -440,7 +442,10 @@ public class MapDlock {
     }
     //生成一小块mapblock
     public void CreateWhenPlayerHitButton(int BigX,int BigZ,int SmallX,int SmallZ,GameObject WillCreate) {
+        Debug.Log("CreateWhenPlayerHitButtonDoneBIGX" + "" + BigX+ "BIGZ" + BigZ+"SmallX"+SmallX+"SmallZ"+SmallZ+"BigX / MapClockBigger"+ BigX / MapClockBigger+ "BigZ / MapClockBigger"+BigZ / MapClockBigger);
+       // Debug.Log(AllMapDlock[(int)BigX / MapClockBigger][(int)BigZ / MapClockBigger]);
         AllMapDlock[BigX / MapClockBigger][BigZ / MapClockBigger].CreatAEvirenment(MapClockBigger, BigX, BigZ, SmallX, SmallZ, "StartCube", WillCreate);
+      
     }
     public void ControlAPrefabNameOfBlock(Vector2 BigMapVector2, Vector3 SmallMapVector3, string NewName, string NewPrefabName) {
         Debug.Log("接收到了要生成的信息BigMapVector2=" + BigMapVector2+ "SmallMapVector3" + SmallMapVector3+ ""+NewPrefabName);
@@ -471,6 +476,7 @@ public class MapBlock
        this.BY = BigMapListNumberY;
        this.SX = SmallMapListNumberX;
        this.SZ = SmallMapListNumberZ;
+        Debug.Log(BX+""+BY);
        this.PCN = PrefabName;
        this.PFN = PictureName;
        HaveBeenUse = true;

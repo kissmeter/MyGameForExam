@@ -59,7 +59,7 @@ public class TriggerToMap : MonoBehaviour {
         int z = (int)this.PlayerPosition.z;
         
         if (this.PlayerPositionInMapClock.x <= 0.25* mapbig) {
-            Debug.Log("x-1");
+          //  Debug.Log("x-1");
             UseMapDlock.ThisUser.Flash(x - mapbig, z);
             UseMapDlock.ThisUser.Flash(x - mapbig, z - mapbig);
             UseMapDlock.ThisUser.Flash(x - mapbig, z + mapbig);
@@ -67,19 +67,19 @@ public class TriggerToMap : MonoBehaviour {
         }
       
         if (this.PlayerPositionInMapClock.x >= 0.75 * mapbig) {
-            Debug.Log("x+1");
+        //    Debug.Log("x+1");
             UseMapDlock.ThisUser.Flash(x + mapbig, z);
             UseMapDlock.ThisUser.Flash(x + mapbig, z - mapbig);
             UseMapDlock.ThisUser.Flash(x + mapbig, z + mapbig);
         }
         if (this.PlayerPositionInMapClock.z <= 0.25 * mapbig) {
-            Debug.Log("z-1");
+        //    Debug.Log("z-1");
             UseMapDlock.ThisUser.Flash(x , z - mapbig);
             UseMapDlock.ThisUser.Flash(x - mapbig, z - mapbig);
             UseMapDlock.ThisUser.Flash(x + mapbig, z - mapbig);
         }
         if (this.PlayerPositionInMapClock.z >= 0.75 * mapbig) {
-            Debug.Log("z+1");
+         //   Debug.Log("z+1");
             UseMapDlock.ThisUser.Flash(x , z + mapbig);
             UseMapDlock.ThisUser.Flash(x - mapbig, z + mapbig);
             UseMapDlock.ThisUser.Flash(x + mapbig, z + mapbig);
