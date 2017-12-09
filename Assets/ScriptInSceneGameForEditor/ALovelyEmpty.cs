@@ -35,6 +35,7 @@ public class ALovelyEmpty : MonoBehaviour {
         }
     }
     public void HitButton1() {
+        Debug.Log("操你妈我点了");
         UseMapDlock.ThisUser.CreateWhenPlayerHitButton(GiveU(HitBigPosition.x), GiveU(HitBigPosition.z), (int)HitPosition.x, (int)HitPosition.z, Cube);
         this.gameObject.SetActive(false);
     }

@@ -70,10 +70,20 @@ public class MapDlock {
         MapClockList.Add(new Vector2(i, j));
       //  Debug.Log("ADD1");
         MapClock NextMapOnece = new MapClock(i, j, MapClockBigger, thisGame.transform, thisGame.transform.gameObject);
-        AddDictionary.Add(j, NextMapOnece);
-     //   Debug.Log("ADD2");
-        AllMapDlock.Add(WhatClockMap, AddDictionary);
-        WhatClockMap++;
+
+        //   Debug.Log("ADD2");
+        if (AllMapDlock.ContainsKey(i))
+        {
+            AddDictionary = AllMapDlock[i];
+            AddDictionary.Add(j, NextMapOnece);
+            AllMapDlock[i]= AddDictionary;
+        }
+        else {
+            AddDictionary.Add(j, NextMapOnece);
+            AllMapDlock.Add(i, AddDictionary);
+        }
+     //   AllMapDlock.Add(WhatClockMap, AddDictionary);
+      //  WhatClockMap++;
       //  Debug.Log("ADD3");
     }
     //void GoUp(int newi,int newj) {
