@@ -406,6 +406,7 @@ public class MapDlock {
         //{
         //    Directory.CreateDirectory(PathPlace);
         //}
+        
         Debug.Log(FileName);
         FileStream file = new FileStream(PathPlace, FileMode.Create);
         byte[] bts = System.Text.Encoding.UTF8.GetBytes(Allvalues);
@@ -451,6 +452,11 @@ public class MapDlock {
         return null;
     }
     //生成一小块mapblock
+
+    public void WhenDestoryAMapBlock(int BigX, int BigZ, int SmallX, int SmallZ) {
+
+        AllMapDlock[BigX / MapClockBigger][BigZ / MapClockBigger].DelABlockInEditor(SmallX, SmallZ);
+    }
     public void CreateWhenPlayerHitButton(int BigX,int BigZ,int SmallX,int SmallZ,GameObject WillCreate) {
         Debug.Log("CreateWhenPlayerHitButtonDoneBIGX" + "" + BigX+ "BIGZ" + BigZ+"SmallX"+SmallX+"SmallZ"+SmallZ+"BigX / MapClockBigger"+ BigX / MapClockBigger+ "BigZ / MapClockBigger"+BigZ / MapClockBigger);
        // Debug.Log(AllMapDlock[(int)BigX / MapClockBigger][(int)BigZ / MapClockBigger]);
@@ -482,6 +488,7 @@ public class MapBlock
 
         //  Renderer ThisRender=GameObject.Instantiate(kk,new Vector3(MapBigger * BigMapListNumberX- BigMapListNumberX /2+ SmallMapListNumberX, MapBigger * BigMapListNumberY - BigMapListNumberY / 2 + SmallMapListNumberY, SmallMapListNumberZ),kk.transform.rotation).GetComponent<Renderer>();
        BehindHim=MonoBehaviour.Instantiate(Create,new Vector3(BigMapListNumberX,0, BigMapListNumberY),kk.transform.rotation)as GameObject;
+       BehindHim.GetComponent<EvienWhenBeDestroyedOnEditor>().BeCreate(BigMapListNumberX, BigMapListNumberY, SmallMapListNumberX, SmallMapListNumberY);
        this.BX = BigMapListNumberX;
        this.BY = BigMapListNumberY;
        this.SX = SmallMapListNumberX;
@@ -571,7 +578,9 @@ public class MapBlock
     public void DoNotUseYou() {
         ThisRender.enabled = false;
     }
-    public void DoNotUseYouForEver() { }
+    public void DoNotUseYouForEver() {
+        
+    }
     public void NowIUseYou() {
         ThisRender.enabled = true;
     }

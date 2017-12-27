@@ -96,6 +96,11 @@ public class MapClock
         ThisBlock[i, j].DoNotUseYou();
 
     }
+    public void DelABlockInEditor(int i ,int j) {
+        Debug.Log("已经摧毁了！");
+        StoreMapBlock.Remove(ThisBlock[i, j]);
+        ThisBlock[i, j] = null;
+    }
     public void CreateToSceneWhenNoMesh()
     {
 

@@ -56,15 +56,22 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         //如果是游玩，则射击，如果是编辑，则摧毁 
                         //1，游玩：Shot(this.Attack,this.Force);
                         //2.1，编辑：DestroyImmediate(this.gameObject);
-                        
+
                         //2.2，编辑：
                     }
-                    else if (gameObj.tag == "BigEvien") {
+                    else if (gameObj.tag == "BigEvien")
+                    {
                         //如果是游玩，则没反应，如果是编辑，则摧毁
                         //1，游玩：
                         //2.1，编辑：DestroyImmediate(this.gameObject);
 
                         //2.2，编辑：
+                    }
+                    else if (gameObj.tag == "SmallEvien") {
+                        print("点击了小格子哦！");
+                        gameObj.GetComponent<EvienWhenBeDestroyedOnEditor>().BeDes();
+                        Destroy(gameObj.gameObject);
+                       
                     }
                 }
                          }
