@@ -18,7 +18,10 @@ public class ProMode {
 
         GUN  = 0,
         SKILL= 1,
-        TASK = 2
+        TASK = 2,      //任务
+        CONSU = 3,     //消耗品
+        QUESTOFTASK=4  //任务道具
+        
 
     }
 

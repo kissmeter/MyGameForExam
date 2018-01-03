@@ -299,9 +299,12 @@
   <ItemGroup>
     <Compile Include="Assets\GameForAdventureFloder\OneGunShotEvent.cs" />
     <Compile Include="Assets\SceneGameStartScript\CreatSomthingScript.cs" />
+    <Compile Include="Assets\SceneGameStartScript\DataOfGun.cs" />
     <Compile Include="Assets\SceneGameStartScript\OneGunProperty.cs" />
     <Compile Include="Assets\SceneGameStartScript\OnePromode.cs" />
+    <Compile Include="Assets\SceneGameStartScript\PlayerShot.cs" />
     <Compile Include="Assets\SceneGameStartScript\ProMode.cs" />
+    <Compile Include="Assets\SceneGameStartScript\PropWindowsManager.cs" />
     <Compile Include="Assets\SceneGameStartScript\ScriptForDate.cs" />
     <Compile Include="Assets\ScriptInSceneGameForEditor\AddToMapJson.cs" />
     <Compile Include="Assets\ScriptInSceneGameForEditor\ALovelyEmpty.cs" />
