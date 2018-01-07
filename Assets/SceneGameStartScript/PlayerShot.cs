@@ -40,18 +40,21 @@ public class PlayerShot : MonoBehaviour {
     private float TimeOfFilling=(float)1.5;
     private int GunRoom=14;
 
-    private bool isenable = false;
+    private bool isenable = true;
     private bool isshot    =false;
     private bool isfilling = false;
     private bool istraning = false;//正在换武器 
     private bool isskilling = false;
+    private Coroutine C;
     void Start () {
-		
-	}
+        OneGunProperty.GetGunProperty();
+        string sss = "是发发发发"; 
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (!isenable) { return; }
+      //  if (PropWindowsManager.isgetgun) { return; }
         if (Input.GetKeyDown(KeyCode.R)) {
             WhenREvent();
         }
@@ -61,6 +64,7 @@ public class PlayerShot : MonoBehaviour {
     }
     public void TransToAGun(DataOfGun TransToGun) {
         isenable = true;//只要我现在不是切入到武器，否则我是不接受射击事件的
+
         //if()
         //协程不写在这里，调用说明已经换成了它，替换掉所有信息,可能这个方法要在动画状态机里面安插一个事件(event)来调用  
         GunShotSpeed = TransToGun.GiveGunShotSpeed();
@@ -70,7 +74,9 @@ public class PlayerShot : MonoBehaviour {
     }
     //这两个是指换枪期间不允许做事情 
     public void YouCantDoAnyMore() {
-
+        StopAllCoroutines();
+        isshot = false;
+        isfilling = false;
         isenable = false;
     }
     public void YouCanDoNow() {
@@ -92,7 +98,7 @@ public class PlayerShot : MonoBehaviour {
         if (isfilling)  { return; }
         if (istraning)  { return; }
         if (isskilling) { return; }
-        StartCoroutine(StartFill());
+        C = StartCoroutine(StartFill());
     }
     void WhenMouseDownEvent() {
         if (isshot)     { return; }
@@ -100,7 +106,7 @@ public class PlayerShot : MonoBehaviour {
         if (istraning)  { return; }
         if (isskilling) { return; }
         if (GunRoom <= 0) { return; }
-        StartCoroutine(StartShot());
+        C = StartCoroutine(StartShot());
     }
     void WhenNumberDownEvent(int number) {
         if (number == isInNumberWhatGun) { return; }
@@ -112,10 +118,10 @@ public class PlayerShot : MonoBehaviour {
     }
     IEnumerator  StartShot() {
         GunRoom--;
-       
         Infor.text += "\n射击中";
         isshot = true;
         yield return new WaitForSeconds(GunShotSpeed);
+        Debug.Log(isshot);
         Infor.text += "\n射击结束";
         isshot = false;
     }
@@ -125,7 +131,7 @@ public class PlayerShot : MonoBehaviour {
         isfilling = true;
         yield return new WaitForSeconds(TimeOfFilling);
         Infor.text += "\n装填结束";
-        GunRoom = 14;
+        GunRoom =14;
         isfilling = false;
     }
 

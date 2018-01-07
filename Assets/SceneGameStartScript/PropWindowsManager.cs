@@ -14,11 +14,12 @@ public class PropWindowsManager : MonoBehaviour {
 
     //如果我拥有四个快捷栏，这四个包含武器和消耗品。我按了其中一个，会产生“切换到武器命令”和“切换到消耗品命令”，在这里的切换到武器命令应该是
     int[] SkillWindows = new int[4];
-    
+
     private int ThisNumber;
     IEnumerator IsIEnumerator;
     private GameObject FirstPlayer;
     PlayerShot playerShot;
+    int i=1;
     // Use this for initialization
     void Start () {
 
@@ -28,8 +29,24 @@ public class PropWindowsManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            InputNumberToChangeToProp(SkillWindows[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            InputNumberToChangeToProp(SkillWindows[1]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            InputNumberToChangeToProp(SkillWindows[2]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            InputNumberToChangeToProp(SkillWindows[3]);
+        }
+
+    }
     //得到一个新的武器信息 
     //public DataOfGun GetAGun() {
 
@@ -39,8 +56,8 @@ public class PropWindowsManager : MonoBehaviour {
     //{
 
     //}
-
-    public void InputNumberToChangeGun(int Input) {
+    //使用input数字调用这个方法之后，如果input代表一个武器，那么是切换武器 
+    public void InputNumberToChangeToProp(int Input) {
         if (IsIEnumerator != null)
         { 
         StopCoroutine(IsIEnumerator);
@@ -51,25 +68,39 @@ public class PropWindowsManager : MonoBehaviour {
         if (Input <= 100000)
         {
             IsIEnumerator = ChangeGun(Input);
+       
             StartCoroutine(IsIEnumerator);
         }
-        else if (Input <= 200000) { }
+        else if (Input <= 200000) {
+            IsIEnumerator = ChangeConsu(Input);
+            StartCoroutine(IsIEnumerator);
+        }
 
         else if (Input <= 300000) { }
     
         
     }
-    IEnumerator ChangeGun(int Input) {
+    IEnumerator GetAGun(int Input) {
         playerShot.YouCantDoAnyMore();
         yield return new WaitForSeconds(2f);
+        playerShot.YouCanDoNow();
+    }
+    IEnumerator ChangeGun(int Input) {
+        playerShot.YouCantDoAnyMore();
+       
+        yield return new WaitForSeconds(2f);
+     
+        playerShot.TransToAGun(OneGunProperty.GetGunProperty().GiveOneGunInfor(Input));
         playerShot.YouCanDoNow();
         IsIEnumerator = null;
         ThisNumber = Input;
     }
-    IEnumerator ChangeCONSU(int Input)  //消耗品 
+    IEnumerator ChangeConsu(int Input)  //消耗品 
     {
         playerShot.YouCantDoAnyMore();
+      
         yield return new WaitForSeconds(2f);
+     
         playerShot.YouCanDoNow();
         IsIEnumerator = null;
         ThisNumber = Input;

@@ -16,12 +16,16 @@ public class OneGunProperty
          //道具包含任务，背包元素，技能三种,而背包元素包含枪，消耗品和任务道具    
          //================================== 
          ThisGunMode = new ProMode(ProMode.PROMode.GUN);
-         //这是一个示例 
-         GunNum[0] = new DataOfGun(1,"MP5", Resources.Load<GameObject>(""), 1,1,1, ThisGunMode);
+         //这是一个示例，这个list要变成dictionary，而且是储存了所有道具信息的  
+         GunNum.Add(new DataOfGun(1, "MP5", Resources.Load<GameObject>("New Prefab"), 1, 1, 1, ThisGunMode));
+         GunNum.Add(new DataOfGun(2, "MP6", Resources.Load<GameObject>("New Prefab"), 2, 2, 2, ThisGunMode));
+         GunNum.Add(new DataOfGun(3, "MP7", Resources.Load<GameObject>("New Prefab"), 3, 3, 3, ThisGunMode));
+         GunNum.Add(new DataOfGun(4, "MP8", Resources.Load<GameObject>("New Prefab"), 4, 4, 4, ThisGunMode));
+         GunNum.Add(new DataOfGun(5, "MP9", Resources.Load<GameObject>("New Prefab"), 5, 5, 5, ThisGunMode));
 
-        }
+    }
 
-        public static OneGunProperty GetGunProperty()
+    public static OneGunProperty GetGunProperty()
         {
             if (GunProperty == null)
             {
