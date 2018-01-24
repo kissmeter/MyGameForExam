@@ -9,7 +9,7 @@ public class OneGunProperty
         private List<GameObject> GunGameObjectList = new List<GameObject>(); 
         private static OneGunProperty GunProperty = null;
         private List<DataOfGun> GunNum = new List<DataOfGun>();
-        DataOfGun GunNum_01;
+        private DataOfGun GunNum_01;
         private OneGunProperty()
         {
        
@@ -56,7 +56,7 @@ public class OneGunProperty
                 GunNumIFind.Add(GunNum[i]);
             }
             catch {
-                //看下面 
+               //看下面 
                // throw new Exception("我骚你妈，给的list中的数值，列表里压根没这个数 ");
             }
            

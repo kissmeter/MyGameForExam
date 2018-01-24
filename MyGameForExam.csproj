@@ -268,6 +268,12 @@
     <Reference Include="LitJson">
       <HintPath>Assets/LitJson.dll</HintPath>
     </Reference>
+    <Reference Include="GETween">
+      <HintPath>Assets/GUI Animator/Common/Plugins/GETween.dll</HintPath>
+    </Reference>
+    <Reference Include="GUIAnimatorFREE">
+      <HintPath>Assets/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Advertisements">
       <HintPath>C:/Users/Administrator/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
@@ -288,12 +294,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Administrator/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="GETween">
-      <HintPath>Assets/GUI Animator/Common/Plugins/GETween.dll</HintPath>
-    </Reference>
-    <Reference Include="GUIAnimatorFREE">
-      <HintPath>Assets/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +321,8 @@
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_DemoPlaySound.cs" />
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_OpenOtherScene.cs" />
     <Compile Include="Assets\GUI Animator\GUI Animator FREE\Demo Basic (CSharp)\Scripts\GUIAnimatorFREEDemo.cs" />
+    <Compile Include="Assets\RigidPlayer\CameraHead.cs" />
+    <Compile Include="Assets\RigidPlayer\UseRigid.cs" />
     <Compile Include="Assets\SceneGameStartScript\CreatSomthingScript.cs" />
     <Compile Include="Assets\SceneGameStartScript\DataOfGun.cs" />
     <Compile Include="Assets\SceneGameStartScript\OneGunProperty.cs" />

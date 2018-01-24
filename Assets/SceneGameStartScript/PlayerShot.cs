@@ -9,6 +9,7 @@ public class PlayerShot : MonoBehaviour {
     private int isInNumberWhatGun;
 
     //这是第一人称，负责上传自己的射击信息 
+    #region 射击信息应该包含什么
     /*
      对于一个人，他的射击信息内应该包含 
      拥有枪支内容，改变枪支内容（捡到和丢弃），每一个枪支的信息 
@@ -20,8 +21,7 @@ public class PlayerShot : MonoBehaviour {
     private int GunRoom;            弹夹容量
     private float TimeOfFilling;    装填时间
          */
-    // Use this for initialization
-
+    #endregion
 
 
     //换武器之后，会改变以下所有的数值，换武器结束和换武器失败（如果死亡或者在换武器期间换武器，那么换武器失败）
