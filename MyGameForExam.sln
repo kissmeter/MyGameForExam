@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGameForExam", "MyGameForE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGameForExam.Plugins", "MyGameForExam.Plugins.csproj", "{7367B14A-C7D3-5F11-E415-3F19929FD362}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGameForExam.Editor", "MyGameForExam.Editor.csproj", "{DADB709B-42E2-074C-71F7-A165AC0EBBB3}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyGameForExam.Editor.Plugins", "MyGameForExam.Editor.Plugins.csproj", "{063C4BD1-525A-8ECE-AD91-CDA95EBEB0E5}"
 EndProject
 Global
@@ -21,6 +23,10 @@ Global
 		{7367B14A-C7D3-5F11-E415-3F19929FD362}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7367B14A-C7D3-5F11-E415-3F19929FD362}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7367B14A-C7D3-5F11-E415-3F19929FD362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DADB709B-42E2-074C-71F7-A165AC0EBBB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DADB709B-42E2-074C-71F7-A165AC0EBBB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DADB709B-42E2-074C-71F7-A165AC0EBBB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DADB709B-42E2-074C-71F7-A165AC0EBBB3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{063C4BD1-525A-8ECE-AD91-CDA95EBEB0E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{063C4BD1-525A-8ECE-AD91-CDA95EBEB0E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{063C4BD1-525A-8ECE-AD91-CDA95EBEB0E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
