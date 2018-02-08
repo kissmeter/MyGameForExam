@@ -4,10 +4,14 @@ labels:
 - Not
 - Fully
 - Implemented
+timeCreated: 1517374197
+licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
-  executionOrder: -1001
+  executionOrder: 100
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
+  assetBundleVariant: 

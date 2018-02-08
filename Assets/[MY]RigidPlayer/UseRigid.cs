@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class UseRigid : MonoBehaviour {
     Rigidbody ThisRI;
+    [SerializeField] GameObject Probe;
     [SerializeField]CapsuleCollider PlayerCapsule;
     [SerializeField] ParticleSystem GetAparticle;
+    [SerializeField] List<GameObject> GameObjectThatTriggerGet;
     // Use this for initialization
     void Start () {
         ThisRI = this.gameObject.GetComponent<Rigidbody>();
@@ -40,16 +42,30 @@ public class UseRigid : MonoBehaviour {
             }
 
         }
+        //============================================
+        //F依然是一个不需要多重按键的，但是考虑到按键修改，必须考虑到这里改成input预设，在此记下，在完善的时候需要注意
+        //============================================
+        if (Input.GetKeyDown(KeyCode.F)) {
+            //理论上来说，获取一定距离内NPC的方式 1，依然是中介者模式   2，添加5尺碰撞盒，在这一瞬间获取NPCtag  3，交付 
+            //在这里用一下探针
+            Probe.SetActive(true);
+            Probe.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.5f * this.PlayerCapsule.height, this.transform.position.z);
+          //  Probe.GetComponent<EventForCollider>().TransTriggerBool(this);
+        }
     }
+    //public void GetThisTriggerGameObject(List<GameObject> list) {
 
-
+    //    GameObjectThatTriggerGet = list;
+    //    CompareDistanceAndUseTalk();
+  
+    //}
 
     private Vector3 NormalFace() {
        // Vector3 SpeedAndVector=new Vector3(0,0,0);
         Vector2 WOnly=new Vector2(0,0);
         if (Input.GetKey(KeyCode.W))
         {
-            Debug.Log("transform.forward" + transform.forward);
+         //   Debug.Log("transform.forward" + transform.forward);
             //  Debug.Log(this.transform.right);
             WOnly += new Vector2(this.transform.forward.normalized.x,this.transform.forward.normalized.z);
 

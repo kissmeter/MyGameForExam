@@ -14,7 +14,8 @@ public class ControlSomeUIAndOtherWin : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        EveryWindows[0].SetActive(true);
+        EveryWindows[0].SetActive(false);
+        EveryWindows[1].SetActive(false);
 	}
 	
 	// Update is called once per frame
