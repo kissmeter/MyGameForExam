@@ -5,7 +5,7 @@ using UnityEngine;
 public class UseRigid : MonoBehaviour {
     Rigidbody ThisRI;
     [SerializeField] GameObject Probe;
-    [SerializeField]CapsuleCollider PlayerCapsule;
+    [SerializeField] CapsuleCollider PlayerCapsule;
     [SerializeField] ParticleSystem GetAparticle;
     [SerializeField] List<GameObject> GameObjectThatTriggerGet;
     // Use this for initialization
@@ -52,6 +52,10 @@ public class UseRigid : MonoBehaviour {
             Probe.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.5f * this.PlayerCapsule.height, this.transform.position.z);
           //  Probe.GetComponent<EventForCollider>().TransTriggerBool(this);
         }
+        if (Input.GetKeyDown(KeyCode.J)) {
+
+            Skill_JumpBack();
+        }
     }
     //public void GetThisTriggerGameObject(List<GameObject> list) {
 
@@ -91,17 +95,33 @@ public class UseRigid : MonoBehaviour {
         return new Vector3(WOnly.normalized.x * (float)0.1, 0, WOnly.normalized.y * (float)0.1);
 
     }
+       public void Skill_JumpBack() {
+        if (!IsInGround())
+        {
+            ThisRI.velocity = new Vector3(0,0,0);
+            ThisRI.AddForce(new Vector3(-2*transform.forward.x, 2f, -2*transform.forward.z), ForceMode.Impulse);
+
+        }
+        else {
+            //提示不符合技能释放条件
+
+        }
+
+        }
         private bool IsInGround() {
+        if (ThisRI.velocity.x+ ThisRI.velocity.y + ThisRI.velocity.z <=0.1) {
+            return false;
+        }
         Ray ray = new Ray(this.gameObject.transform.position, new Vector3(0, -1, 0));
         RaycastHit RayForGround;
         if (Physics.Raycast(ray, out RayForGround))
         {
             Debug.DrawLine(ray.origin, RayForGround.point);//划出射线，在scene视图中能看到由摄像机发射出的射线
             GameObject gameObj = RayForGround.collider.gameObject;
-            if (gameObj.name.StartsWith("Cube") == true)//当射线碰撞目标的name包含Cube，执行拾取操作
-            {
-                Debug.Log(gameObj.name);
-            }
+            //if (gameObj.name.StartsWith("Cube") == true)//当射线碰撞目标的name包含Cube，执行拾取操作
+            //{
+            //    Debug.Log(gameObj.name);
+            //}
             float Distance = this.gameObject.transform.position.y - RayForGround.point.y;
             // Debug.Log(Distance);
             if (Distance < 0.51f * PlayerCapsule.height) { return false; }
