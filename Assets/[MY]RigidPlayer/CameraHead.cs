@@ -32,8 +32,8 @@ public class CameraHead : MonoBehaviour {
             float y = Input.GetAxis("Mouse X");
             float x = Input.GetAxis("Mouse Y");
            // Debug.Log("X=" + x + "Y=" + y);
-            OldVRotationEuler.x -= x;
-            OldVRotationEuler.y += y;
+            OldVRotationEuler.x -= 4 * x;
+            OldVRotationEuler.y += 4 * y;
             return OldVRotationEuler;
     }
     private void RotateToListenMouse() {

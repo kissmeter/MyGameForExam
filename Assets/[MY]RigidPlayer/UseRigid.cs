@@ -8,40 +8,62 @@ public class UseRigid : MonoBehaviour {
     [SerializeField] CapsuleCollider PlayerCapsule;
     [SerializeField] ParticleSystem GetAparticle;
     [SerializeField] List<GameObject> GameObjectThatTriggerGet;
+    [SerializeField] GameObject Gun;
+    private RaycastHit hitInfo;
+    private Vector3 InputForce;
+    private bool isrunning = false;
+    private bool isjumping = false;
+    //private Vector3 ThisFaceWorldPointIn;
+    //private Vector3 ThisRightWorldPointIn;
     // Use this for initialization
     void Start () {
         ThisRI = this.gameObject.GetComponent<Rigidbody>();
         GetAparticle.Stop();
 
     }
-
+    // 游戏改host
     // Update is called once per frame
     void FixedUpdate()
     {
         //Debug.Log("NormalFace()"+NormalFace());
         //非但是在空中，处于编辑状态等状态下也不能继续控制移动和跳跃了
-        if (!IsInGround())
+        InputForce = NormalFace();
+        if (IsInGround()&&isrunning)
         {
-            ThisRI.AddForce(NormalFace(), ForceMode.Impulse);
+            isrunning = false;
+            Debug.Log("触发了");
+            ThisRI.velocity = new Vector3(0, 0, 0);
+            ThisRI.AddForce(InputForce, ForceMode.Impulse);
         }
-        if (!IsInGround() && Input.GetKeyDown(KeyCode.Space))
+
+        if (IsInGround() && Input.GetKeyDown(KeyCode.Space))
         {
-            ThisRI.AddForce(new Vector3(0, 2f, 0), ForceMode.Impulse);
+            isjumping = true;
+            ThisRI.velocity = new Vector3(0, 0, 0);
+            ThisRI.AddForce(new Vector3(0, 5f, 3 * transform.forward.z), ForceMode.Impulse);
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);//从摄像机发出到点击坐标的射线
-            RaycastHit hitInfo;
+        if (Input.GetButtonDown("Fire2")) {
+            //   Debug.Log("射击了");
+            //发射了一发子弹
+            //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);//从摄像机发出到点击坐标的射线
+            GameObject.Find("AimControl").GetComponent<AimControlScript>().IfShotAtOnece();
+            Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+
+
             if (Physics.Raycast(ray, out hitInfo))
             {
                 Debug.DrawLine(ray.origin, hitInfo.point);//划出射线，只有在scene视图中才能看到
                 GameObject gameObj = hitInfo.collider.gameObject;
                 Debug.Log("click object name is " + gameObj.name + "" + hitInfo.point);
-                StartCoroutine(ControlKnifeAndUi.GetControlKU().ParticleCorat(hitInfo.point,ControlKnifeAndUi.GetControlKU().TheNext()));
+                StartCoroutine(ControlKnifeAndUi.GetControlKU().ParticleCorat(hitInfo.point, ControlKnifeAndUi.GetControlKU().TheNext()));
                 StartCoroutine(ControlKnifeAndUi.GetControlKU().HitUiOnSky(hitInfo.point, ControlKnifeAndUi.GetControlKU().TheNext(), "99999999", Color.red));
             }
-
         }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+     
+
+        //}
         //============================================
         //F依然是一个不需要多重按键的，但是考虑到按键修改，必须考虑到这里改成input预设，在此记下，在完善的时候需要注意
         //============================================
@@ -57,60 +79,80 @@ public class UseRigid : MonoBehaviour {
             Skill_JumpBack();
         }
     }
+    public void Skill_JumpBack()
+    {
+        if (IsInGround())
+        {
+            Debug.Log("开始飞了");
+            isjumping = true;
+            ThisRI.velocity = new Vector3(0, 0, 0);
+            ThisRI.AddForce(new Vector3(-2 * transform.forward.x, 2f, -2 * transform.forward.z), ForceMode.Impulse);
+
+        }
+        else
+        {
+            //提示不符合技能释放条件
+
+        }
+
+    }
     //public void GetThisTriggerGameObject(List<GameObject> list) {
 
     //    GameObjectThatTriggerGet = list;
     //    CompareDistanceAndUseTalk();
-  
-    //}
 
+    //}
+    //private Vector3 ThisFaceWorldPoint() {
+    //    ThisFaceWorldPointIn = transform.forward.normalized;
+    //    return ThisFaceWorldPointIn;
+    //}
+    //private Vector3 ThisRightWorldPoint() {
+    //    ThisRightWorldPointIn = transform.right.normalized;
+    //    return ThisRightWorldPointIn;
+
+    //}
     private Vector3 NormalFace() {
        // Vector3 SpeedAndVector=new Vector3(0,0,0);
         Vector2 WOnly=new Vector2(0,0);
         if (Input.GetKey(KeyCode.W))
         {
-         //   Debug.Log("transform.forward" + transform.forward);
+            //  Debug.Log("transform.forward" + transform.forward);
             //  Debug.Log(this.transform.right);
+            
             WOnly += new Vector2(this.transform.forward.normalized.x,this.transform.forward.normalized.z);
-
+            isrunning = true;
         }
         if (Input.GetKey(KeyCode.S))
         {
+            
             WOnly += new Vector2(-this.transform.forward.normalized.x, -this.transform.forward.normalized.z);
-
+            isrunning = true;
         }
         if (Input.GetKey(KeyCode.A))
         {
+           
             WOnly += new Vector2(-this.transform.right.normalized.x , -this.transform.right.normalized.z);
-          
+            isrunning = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
+           
             WOnly += new Vector2(this.transform.right.normalized.x, this.transform.right.normalized.z);
-         
+            isrunning = true;
         }
 
         //Debug.Log("WOnly.normalized"+WOnly.normalized);
        // SpeedAndVector =new Vector3(WOnly.normalized.x * (float)0.1,0, WOnly.normalized.y * (float)0.1);
-        return new Vector3(WOnly.normalized.x * (float)0.1, 0, WOnly.normalized.y * (float)0.1);
+        return new Vector3(WOnly.normalized.x * 1f, 0, WOnly.normalized.y * 1f);
 
     }
-       public void Skill_JumpBack() {
-        if (!IsInGround())
-        {
-            ThisRI.velocity = new Vector3(0,0,0);
-            ThisRI.AddForce(new Vector3(-2*transform.forward.x, 2f, -2*transform.forward.z), ForceMode.Impulse);
-
-        }
-        else {
-            //提示不符合技能释放条件
-
-        }
-
-        }
+ 
         private bool IsInGround() {
-        if (ThisRI.velocity.x+ ThisRI.velocity.y + ThisRI.velocity.z <=0.1) {
-            return false;
+      
+        if (Mathf.Abs(ThisRI.velocity.x + ThisRI.velocity.y + ThisRI.velocity.z) <= 0.1) {
+           // Debug.Log("静止了！");
+            if (isjumping) { return false; }
+            return true;
         }
         Ray ray = new Ray(this.gameObject.transform.position, new Vector3(0, -1, 0));
         RaycastHit RayForGround;
@@ -124,11 +166,15 @@ public class UseRigid : MonoBehaviour {
             //}
             float Distance = this.gameObject.transform.position.y - RayForGround.point.y;
             // Debug.Log(Distance);
-            if (Distance < 0.51f * PlayerCapsule.height) { return false; }
-            else { return true; }
+            if (Distance < 0.51f * PlayerCapsule.height) {
+                isjumping = false;
+               // Debug.Log("此时踩着了");
+                return true; }
+            else { return false; }
            
+
         }
-        return true;
+        return false;
 
         }
 

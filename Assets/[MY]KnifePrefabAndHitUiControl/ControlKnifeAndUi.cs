@@ -54,19 +54,19 @@ public class ControlKnifeAndUi  {
     }   
     public IEnumerator ParticleCorat(Vector3 Position,int i)
     {
-        Debug.Log("开始了粒子协程，位置是"+ Position + ",序号是"+i);
+      //  Debug.Log("开始了粒子协程，位置是"+ Position + ",序号是"+i);
         ParticleSystem ThisParticleSystem= KnifeProjectList[i];
         ThisParticleSystem.gameObject.SetActive(true);
         ThisParticleSystem.transform.position = Position;
         ThisParticleSystem.Play();
         yield return new WaitForSeconds(0.1f);
-        Debug.Log("关闭了粒子协程序号是" + i);
+      //  Debug.Log("关闭了粒子协程序号是" + i);
         ThisParticleSystem.Stop();
 
 
     }
     public IEnumerator HitUiOnSky(Vector3 Position,int i,string attack,Color ThisColor) {
-        Debug.Log("开始了UI协程，位置是" + Position + ",序号是" + i);
+      //  Debug.Log("开始了UI协程，位置是" + Position + ",序号是" + i);
         UiToBeControl ThisUI = UiProjectList[i];
         ThisUI.gameObject.SetActive(true);
         ThisUI.gameObject.transform.position = Position;
