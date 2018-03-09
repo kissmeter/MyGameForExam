@@ -427,6 +427,12 @@
     <Compile Include="Assets\[MRFU]SineVFX\Volumetric3DLasers\Scripts\SmartWaveParticlesControllerV3D.cs" />
     <Compile Include="Assets\[MRFU]SineVFX\Volumetric3DLasers\Scripts\StartPointEffectControllerV3D.cs" />
     <Compile Include="Assets\[MRFU]SineVFX\Volumetric3DLasers\Scripts\UIControllerV3D.cs" />
+    <Compile Include="Assets\[MY]After\BeforeComingSetting.cs" />
+    <Compile Include="Assets\[MY]After\ConnectionClub.cs" />
+    <Compile Include="Assets\[MY]After\PlayerInfor.cs" />
+    <Compile Include="Assets\[MY]ControlAll\Gallery.cs" />
+    <Compile Include="Assets\[MY]ControlAll\GameMainControl.cs" />
+    <Compile Include="Assets\[MY]ControlAll\GameManager_1.cs" />
     <Compile Include="Assets\[MY]GameForAdventureFloder\OneGunShotEvent.cs" />
     <Compile Include="Assets\[MY]KnifePrefabAndHitUiControl\ControlKnifeAndUi.cs" />
     <Compile Include="Assets\[MY]KnifePrefabAndHitUiControl\KnifeToBeControl.cs" />
@@ -457,6 +463,7 @@
     <Compile Include="Assets\[MY]WindowsControl\EventForCollider.cs" />
     <Compile Include="Assets\[MY]WindowsControl\WindowsBag.cs" />
     <Compile Include="Assets\Aim\AimControlScript.cs" />
+    <Compile Include="Assets\ButtonHit.cs" />
     <Compile Include="Assets\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCamera.cs" />
     <Compile Include="Assets\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCameraUI.cs" />
     <Compile Include="Assets\GE Common Assets\GE Toggle Full Screen\Scripts\GE_ToggleFullScreenUI.cs" />
@@ -489,6 +496,7 @@
     <Compile Include="Assets\JMO Assets\WarFX\Scripts\WFX_BulletHoleDecal.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Scripts\WFX_LightFlicker.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
+    <Compile Include="Assets\scri.cs" />
     <Compile Include="Assets\Shuriken Salvo by Moonflower Carnivore\Scripts\assetUrl.cs" />
     <Compile Include="Assets\Shuriken Salvo by Moonflower Carnivore\Scripts\autoTarget.cs" />
     <Compile Include="Assets\Shuriken Salvo by Moonflower Carnivore\Scripts\changeScene.cs" />

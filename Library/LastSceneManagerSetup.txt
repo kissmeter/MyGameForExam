@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/[MY]Scenes/GameScene.unity
+- path: Assets/[MY]Scenes/SaveLife_Mode_1.unity
   isLoaded: 1
   isActive: 1

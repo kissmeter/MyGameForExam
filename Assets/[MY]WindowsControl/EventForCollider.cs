@@ -9,7 +9,7 @@ public class EventForCollider : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //要有一个可靠的办法去寻找主角 
-        PlayerRigidUse = GameObject.Find("OneRayPlayer").GetComponent<UseRigid>();
+        PlayerRigidUse = GameObject.Find("Player").GetComponent<UseRigid>();
 
     }
     private void OnEnable()

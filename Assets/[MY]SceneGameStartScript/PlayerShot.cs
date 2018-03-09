@@ -7,7 +7,14 @@ public class PlayerShot : MonoBehaviour {
     [SerializeField] Text Infor;
     [SerializeField] Text GunRoomText;
     private int isInNumberWhatGun;
+    //==================================================
+    struct Weapen
+    {
+        DataOfGun ThisGun;
+        int count;
 
+    }
+    //===================================================
     //这是第一人称，负责上传自己的射击信息 
     #region 射击信息应该包含什么
     /*
