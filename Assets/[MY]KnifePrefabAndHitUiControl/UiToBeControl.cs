@@ -8,7 +8,7 @@ public class UiToBeControl : MonoBehaviour {
     private void OnEnable()
     {
         if (canvas == null) {
-         //   canvas = GameObject.Find("WorldPoint").transform;
+            canvas = GameObject.Find("WorldPoint").transform;
         }
         this.transform.parent = canvas;
         //开始你的表演

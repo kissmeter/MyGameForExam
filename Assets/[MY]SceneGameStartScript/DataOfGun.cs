@@ -12,7 +12,7 @@ public class DataOfGun {
     private float TimeOfFilling; 
 
 
-    public DataOfGun(int GunNum,string GunName, GameObject GunPrefab, float GunShotSpeed, int GunRoom, float TimeOfFilling) {
+    public DataOfGun(int GunNum,string GunName, GameObject GunPrefab, float GunShotSpeed, int GunRoom, float TimeOfFilling, ProMode THISMODE) {
 
         this.GunNum    = GunNum;
         this.GunPrefab = GunPrefab;
@@ -20,8 +20,7 @@ public class DataOfGun {
         this.GunShotSpeed = GunShotSpeed;
         this.GunRoom = GunRoom;
         this.TimeOfFilling = TimeOfFilling;
-     
-        //10000,MPPPP,null,0.5,5,3,
+        this.THISMODE = THISMODE;
     }
     public float GiveGunShotSpeed ()
     {

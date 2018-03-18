@@ -7,7 +7,6 @@ public class WindowsBag : MonoBehaviour {
     [SerializeField] GameObject[] GunHaveSetActive;
     List<DataOfGun> DataOfGunList;
     List<int> GunLast;
-    List<int> BulletLast;
     int I;
 	// Use this for initialization
 	void Start () {
@@ -34,7 +33,7 @@ public class WindowsBag : MonoBehaviour {
     }
     public void refresh() {
         //get all information in bag,and refresh it!
-        Bag.SingleBag().ToGetGunListNumber(out DataOfGunList, out GunLast,out BulletLast);
+        Bag.SingleBag().ToGetGunListNumber(out DataOfGunList, out GunLast);
         for (int i = 0; i < DataOfGunList.Count; i++)
         {
          //   Debug.Log(DataOfGunList[i].GetThisNumber());

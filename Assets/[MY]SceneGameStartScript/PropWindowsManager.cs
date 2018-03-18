@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Class_1;
+
 public class PropWindowsManager : MonoBehaviour {
-    
     //复制 
     //换武器之后，会改变以下所有的数值，换武器结束和换武器失败（如果死亡或者在换武器期间换武器，那么换武器失败）
     //这些数值在储存 DataOfGun上。
@@ -122,7 +121,7 @@ public class PropWindowsManager : MonoBehaviour {
        
         yield return new WaitForSeconds(2f);
      
-        playerShot.TransToAGun(new Weapen(OneGunProperty.GetGunProperty().GiveOneGunInfor(Input)),5 );
+        playerShot.TransToAGun(OneGunProperty.GetGunProperty().GiveOneGunInfor(Input));
         playerShot.YouCanDoNow();
         IsIEnumerator = null;
         ThisNumber = Input;

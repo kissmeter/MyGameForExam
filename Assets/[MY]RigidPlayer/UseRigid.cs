@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UseRigid : MonoBehaviour {
-    [SerializeField] private float WhenShift;
-    [SerializeField] Rigidbody ThisRI;
+    [SerializeField]private float WhenShift;
+    [SerializeField]Rigidbody ThisRI;
     [SerializeField] GameObject Probe;
     [SerializeField] CapsuleCollider PlayerCapsule;
     [SerializeField] ParticleSystem GetAparticle;
@@ -28,26 +28,21 @@ public class UseRigid : MonoBehaviour {
     // Update is called once per frame
     void StopWhenUpWASD() {
 
-        if (IsInGround()&&((Input.GetKeyUp(KeyCode.W)|| Input.GetKeyUp(KeyCode.A)|| Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))))
+        if (IsInGround()&&(Input.GetKeyUp(KeyCode.W)|| Input.GetKeyUp(KeyCode.A)|| Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D)))
         {
-            Debug.Log("BUTTONUP");
-            //ThisRI.velocity = new Vector3(0, 0, 0);
-            ThisRI.velocity = new Vector3(0.5f*ThisRI.velocity.x, 0.5f * ThisRI.velocity.y, 0.5f * ThisRI.velocity.z);
-            
+
+            ThisRI.velocity = new Vector3(0.3f*ThisRI.velocity.x, 0.3f * ThisRI.velocity.y, 0.3f * ThisRI.velocity.z);
+
         }
 
-    }
-    private void Update()
-    {
-        StopWhenUpWASD();
     }
     void FixedUpdate()
     {
         isonground = IsInGround();
            //Debug.Log("NormalFace()"+NormalFace());
            //非但是在空中，处于编辑状态等状态下也不能继续控制移动和跳跃了
-        InputForce = WhenShift * NormalFace();
-        
+           InputForce = WhenShift * NormalFace();
+        StopWhenUpWASD();
         if (Input.GetKey(KeyCode.LeftShift))
         {
             WhenShift = 3;
@@ -76,16 +71,15 @@ public class UseRigid : MonoBehaviour {
             //发射了一发子弹
             //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);//从摄像机发出到点击坐标的射线
             GameObject.Find("AimControl").GetComponent<AimControlScript>().IfShotAtOnece();
-
             Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
 
 
             if (Physics.Raycast(ray, out hitInfo))
             {
 
-               // Debug.DrawLine(ray.origin, hitInfo.point);//划出射线，只有在scene视图中才能看到
+                Debug.DrawLine(ray.origin, hitInfo.point);//划出射线，只有在scene视图中才能看到
                 GameObject gameObj = hitInfo.collider.gameObject;
-               // Debug.Log("click object name is " + gameObj.name + "" + hitInfo.point);
+                Debug.Log("click object name is " + gameObj.name + "" + hitInfo.point);
                 StartCoroutine(ControlKnifeAndUi.GetControlKU().ParticleCorat(hitInfo.point, ControlKnifeAndUi.GetControlKU().TheNext()));
                 StartCoroutine(ControlKnifeAndUi.GetControlKU().HitUiOnSky(hitInfo.point, ControlKnifeAndUi.GetControlKU().TheNext(), "99999999", Color.red));
 
@@ -116,7 +110,6 @@ public class UseRigid : MonoBehaviour {
 
             Skill_JumpBack();
         }
-      
     }
     public void Skill_JumpBack()
     {
@@ -187,23 +180,28 @@ public class UseRigid : MonoBehaviour {
     }
  
         private bool IsInGround() {
+      //  Debug.Log("checking~");
         if (Mathf.Abs(ThisRI.velocity.x + ThisRI.velocity.y + ThisRI.velocity.z) <= 0.1) {
-            if (
-                isjumping
-                ) { return       false  //===========================//
-                    
-                    ; }
+           // Debug.Log("静止了！");
+            if (isjumping) { return false; }
             return true;
         }
+       // Ray ray = new Ray(this.gameObject.transform.position, new Vector3(0, -1, 0));
         RaycastHit RayForGround;
-
         if (Physics.SphereCast(this.gameObject.transform.position,0.3f, new Vector3(0, -1, 0),out RayForGround))
         {
-        
-          //  GameObject gameObj = RayForGround.collider.gameObject;
+           // Debug.DrawLine(ray.origin, RayForGround.point);//划出射线，在scene视图中能看到由摄像机发射出的射线
+            GameObject gameObj = RayForGround.collider.gameObject;
+            //if (gameObj.name.StartsWith("Cube") == true)//当射线碰撞目标的name包含Cube，执行拾取操作
+            //{
+            //    Debug.Log(gameObj.name);
+            //}
             height = this.gameObject.transform.position.y - RayForGround.point.y;
+            // Debug.Log(Distance);
+           // Debug.Log("checking~"+height+"HEIGHT"+ PlayerCapsule.height+ "PlayerCapsule.height");
             if (height <= 0.51f * PlayerCapsule.height) {
                 isjumping = false;
+               // Debug.Log("此时踩着了");
                 return true; }
             else { return false; }
            
@@ -211,7 +209,7 @@ public class UseRigid : MonoBehaviour {
         }
         isjumping = false;
         return true;
-
+        //   return false;
 
     }
 
