@@ -8,6 +8,7 @@ public class EventForCollider : MonoBehaviour {
     private List<GameObject> GameobjectInTrigger=new List<GameObject>();
 	// Use this for initialization
 	void Start () {
+
         //要有一个可靠的办法去寻找主角 
         PlayerRigidUse = GameObject.Find("Player").GetComponent<UseRigid>();
 
@@ -21,7 +22,7 @@ public class EventForCollider : MonoBehaviour {
         if (ToTrigger) {
             StartCoroutine(YieldInSetActive());
             //送回去
-       
+         
         }
 	}
     public IEnumerator YieldInSetActive() {
@@ -44,7 +45,6 @@ public class EventForCollider : MonoBehaviour {
         if (GameobjectInTrigger.Count == 1)
         {
             Min = GameobjectInTrigger[0];
-
         }
         else
         {
@@ -54,6 +54,7 @@ public class EventForCollider : MonoBehaviour {
                 //比较gameObjectThatTriggerGet[i]和gameObjectThatTriggerGet[i-1]与主角的距离大小_(:зゝ∠)_
                 if (GameobjectInTrigger[i].transform.position.x + GameobjectInTrigger[i].transform.position.y - this.transform.position.x - this.transform.position.y < GameobjectInTrigger[i - 1].transform.position.x + GameobjectInTrigger[i - 1].transform.position.y - this.transform.position.x - this.transform.position.y)
                 {
+
                     Min = GameobjectInTrigger[i];
 
                 }

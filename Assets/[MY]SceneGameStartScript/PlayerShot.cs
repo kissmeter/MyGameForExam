@@ -2,18 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Class_1;
 
-public class PlayerShot : MonoBehaviour {
-    [SerializeField] Text Infor;
-    [SerializeField] Text GunRoomText;
-    private int isInNumberWhatGun;
-    //==================================================
-    struct Weapen
+namespace Class_1 {
+    
+    public struct Weapen
     {
-        DataOfGun ThisGun;
-        int count;
+        public Weapen(DataOfGun thisGun)
+        {
+            ThisGun = thisGun;
+            count = thisGun.GiveGunRoom();
+        }
+        public Weapen(DataOfGun thisGun, int count) {
+            ThisGun = thisGun;
+            this.count = count;
+
+        }
+        public Weapen(bool _weapen) {
+
+                ThisGun = null;
+                count = 0;
+         
+          
+        }
+        public DataOfGun ThisGun;
+        public int count;
 
     }
+    public struct Consu
+    {
+        public Consu(DataOfConsu thisConsu,int count)
+        {
+
+            this.thisConsu = thisConsu;
+            this.count = count;
+           // count = thisConsu.DataOfConsu();
+        }
+        public DataOfConsu thisConsu;
+        public int count;
+    }
+}
+
+
+
+public class PlayerShot : MonoBehaviour {
+    [SerializeField] SingleMode_1 ThisMode_1;
+    [SerializeField] Text Infor;
+    [SerializeField] Text GunRoomText;
+    
+    private int isInNumberWhatGun;
+    //==================================================
+
     //===================================================
     //这是第一人称，负责上传自己的射击信息 
     #region 射击信息应该包含什么
@@ -45,23 +84,80 @@ public class PlayerShot : MonoBehaviour {
     //改变到一个武器（开启这个协程之前要关闭所有这个协程，这期间还不允许干别的，结束之后才改变所有信息，如果失败，那么不改变信息）
     private float GunShotSpeed=(float)0.3;
     private float TimeOfFilling=(float)1.5;
-    private int GunRoom=14;
+    private int GunRoom = 6;
 
     private bool isenable = true;
-    private bool isshot    =false;
+    private bool isshot   = false;
     private bool isfilling = false;
     private bool istraning = false;//正在换武器 
     private bool isskilling = false;
     private Coroutine C;
     void Start () {
+        WeaponInHand = new Weapen(new DataOfGun(10000, "MPPPP", null, 0.5f, 5, 3));
         OneGunProperty.GetGunProperty();
         string sss = "是发发发发"; 
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+
+
+
+
+
+
         if (!isenable) { return; }
-      //  if (PropWindowsManager.isgetgun) { return; }
+        //========================================================
+        //Gun
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("Input number1");
+            if (isInNumberWhatGun == 1) { return; }
+            Bag.SingleBag().TransWeaponInHand(isInNumberWhatGun, 1, this);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (isInNumberWhatGun == 2) { return; }
+            Bag.SingleBag().TransWeaponInHand(isInNumberWhatGun, 2, this);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (isInNumberWhatGun == 3) { return; }
+            Bag.SingleBag().TransWeaponInHand(isInNumberWhatGun, 3, this);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (isInNumberWhatGun == 4) { return; }
+            Bag.SingleBag().TransWeaponInHand(isInNumberWhatGun, 4, this);
+        }
+        //Consu
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+
+        }
+
+
+
+
+        //========================================================
+        //  if (PropWindowsManager.isgetgun) { return; }
         if (Input.GetKeyDown(KeyCode.R)) {
             WhenREvent();
         }
@@ -69,14 +165,17 @@ public class PlayerShot : MonoBehaviour {
             WhenMouseDownEvent();
         }
     }
-    public void TransToAGun(DataOfGun TransToGun) {
+    private Weapen WeaponInHand;
+    public void TransToAGun(Weapen ThisWeapon,int ProbeToWhat) {
         isenable = true;//只要我现在不是切入到武器，否则我是不接受射击事件的
-
+        Debug.Log("Trans To Weapon " + ProbeToWhat);
+        isInNumberWhatGun = ProbeToWhat;
         //if()
         //协程不写在这里，调用说明已经换成了它，替换掉所有信息,可能这个方法要在动画状态机里面安插一个事件(event)来调用  
-        GunShotSpeed = TransToGun.GiveGunShotSpeed();
-        TimeOfFilling = TransToGun.GiveTimeOfFilling();
-        GunRoom = TransToGun.GiveGunRoom();
+        WeaponInHand = ThisWeapon;
+        GunShotSpeed = ThisWeapon.ThisGun.GiveGunShotSpeed();
+        TimeOfFilling = ThisWeapon.ThisGun.GiveTimeOfFilling();
+        GunRoom = ThisWeapon.ThisGun.GiveGunRoom();
 
     }
     //这两个是指换枪期间不允许做事情 
@@ -96,7 +195,7 @@ public class PlayerShot : MonoBehaviour {
     }
     void FixedUpdate()
     {
-        GunRoomText.text = GunRoom.ToString();
+        //GunRoomText.text = GunRoom.ToString();
     }
 
     void WhenREvent() {
@@ -126,6 +225,9 @@ public class PlayerShot : MonoBehaviour {
     IEnumerator  StartShot() {
         GunRoom--;
         Infor.text += "\n射击中";
+        //需要检查现在处于什么游戏模式
+        //Debug.Log(GunRoom);
+        ThisMode_1.OneShot(GunRoom);
         isshot = true;
         yield return new WaitForSeconds(GunShotSpeed);
         Debug.Log(isshot);
@@ -138,8 +240,9 @@ public class PlayerShot : MonoBehaviour {
         isfilling = true;
         yield return new WaitForSeconds(TimeOfFilling);
         Infor.text += "\n装填结束";
-        GunRoom =14;
+        GunRoom = WeaponInHand.ThisGun.GiveGunRoom();
+        ThisMode_1.OneShot(GunRoom);
         isfilling = false;
     }
-
+    
 }
